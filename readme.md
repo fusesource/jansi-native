@@ -4,7 +4,7 @@
 Description
 -----------
 
-[Jansi Native][2] implements the Native Libraries needed by the Jansi project. 
+Jansi Native implements the JNI Libraries used by the [Jansi project](http://jansi.fusesource.org/). 
 
 Project Links
 -------------
