@@ -20,19 +20,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.fusesource.jansi</groupId>
-  <artifactId>jansi</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <artifactId>jansi-native</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   
-  <name>jansi</name>
-  <description>jansi is a java library for generating and interpreting ANSI escape sequences.</description>
+  <name>${artifactId}</name>
+  <description>Jansi is a java library for generating and interpreting ANSI escape sequences.</description>
   
   <properties>
     <forge-project-id>jansi</forge-project-id>
     <forge-project-id-uc>JANSI</forge-project-id-uc>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/${forge-project-id}.git</release-altGitURL>
+    <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/jansinative.git</release-altGitURL>
   </properties>
   
   <url>http://${forge-project-id}.fusesource.org</url>
@@ -70,29 +70,30 @@
   </licenses>
   
   <scm>
-    <connection>scm:git:git://forge.fusesource.com/${forge-project-id}.git</connection>
+    <connection>scm:git:git://forge.fusesource.com/jansinative.git</connection>
     <!-- Work around for issue: http://jira.codehaus.org/browse/SCM-444 -->
     <developerConnection>${release-altGitURL}</developerConnection>
-    <url>http://fusesource.com/forge/gitweb?p=${forge-project-id}.git</url>
+    <url>http://fusesource.com/forge/gitweb?p=jansinative.git</url>
   </scm>
 
   <distributionManagement>
     <repository>
-      <id>fusesource-nexus-staging</id>
-      <name>Fusesource Release Repository</name>
-      <url>http://repo.fusesource.com/nexus/service/local/staging/deploy/maven2</url>
+      <id>release.fusesource.org</id>
+      <name>Release Repository</name>
+      <url>dav:http://fusesource.com/forge/dav/${forge-project-id}/repo/release</url>
     </repository>
     <snapshotRepository>
-      <id>fusesource-nexus-snapshots</id>
-      <name>Fusesource Nexus Snapshots</name>
-      <url>http://repo.fusesource.com/nexus/content/repositories/snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+      <id>snapshot.fusesource.org</id>
+      <name>Snapshot Repository</name>
+      <url>dav:http://fusesource.com/forge/dav/${forge-project-id}/repo/snapshot</url>
     </snapshotRepository>
     <site>
       <id>website.fusesource.org</id>
       <name>website</name>
       <url>dav:http://fusesource.com/forge/dav/${forge-project-id}/maven/${project.version}</url>
     </site>
-  </distributionManagement>
+  </distributionManagement> 
   
   <developers>
     <developer>
@@ -150,6 +151,7 @@
               <goal>package-source</goal>
             </goals>
             <configuration>
+              <name>jansi</name>
               <callbacks>false</callbacks>
               <copyright><![CDATA[
 /*******************************************************************************
@@ -172,19 +174,6 @@
             </configuration>
           </execution>
         </executions>        
-      </plugin>
-
-      <!-- include all the dependencies into the jar so it can run standalone -->
-      <plugin>
-        <groupId>org.fusesource.mvnplugins</groupId>
-        <artifactId>maven-uberize-plugin</artifactId>
-        <version>1.5</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals><goal>uberize</goal></goals>
-          </execution>
-        </executions>
       </plugin>
       
       <plugin>
