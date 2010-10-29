@@ -33,7 +33,7 @@
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/jansinative.git</release-altGitURL>
-    <hawtjni-version>1.0</hawtjni-version>
+    <hawtjni-version>1.1-SNAPSHOT</hawtjni-version>
   </properties>
   
   <url>http://${forge-project-id}.fusesource.org</url>
@@ -417,5 +417,24 @@
         </plugins>
       </build>
     </profile>
+    
+    <profile>
+      <id>download</id>
+      <repositories>
+        <repository>
+          <id>fusesource.nexus.snapshot</id>
+          <name>FuseSource Community Snapshot Repository</name>
+          <url>http://repo.fusesource.com/nexus/content/groups/public-snapshots</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>fusesource.nexus.snapshot</id>
+          <name>FuseSource Community Snapshot Repository</name>
+          <url>http://repo.fusesource.com/nexus/content/groups/public-snapshots</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    
   </profiles>
 </project>
