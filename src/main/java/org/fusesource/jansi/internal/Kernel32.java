@@ -414,5 +414,14 @@ public class Kernel32 {
      * @return
      */
     public static final native int _getch();
+    
+
+   /**
+    * see: http://msdn.microsoft.com/en-us/library/ms686050%28VS.85%29.aspx
+    * @param title
+    * @return 0 if title was set successfully
+    */
+   public static final native int SetConsoleTitle(
+               @JniArg(flags={UNICODE}) String title);    
 
 }
