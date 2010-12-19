@@ -74,4 +74,12 @@ public class WindowsSupport {
         GetConsoleScreenBufferInfo (outputHandle, info);
         return info.windowHeight();        
     }
+
+    public static KEY_EVENT_RECORD readConsoleInput() {
+        long hConsole = GetStdHandle (STD_INPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE)
+            return null;
+        return readKeyEvent(hConsole); 
+    }
+
 }

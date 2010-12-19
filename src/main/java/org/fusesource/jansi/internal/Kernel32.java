@@ -424,4 +424,125 @@ public class Kernel32 {
    public static final native int SetConsoleTitle(
                @JniArg(flags={UNICODE}) String title);    
 
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms684166(v=VS.85).aspx
+     */
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class KEY_EVENT_RECORD {
+
+        static {
+            LIBRARY.load();
+            init();
+        }
+
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(KEY_EVENT_RECORD)")
+        public static int SIZEOF;
+        @JniField(flags={CONSTANT}, accessor="CAPSLOCK_ON")
+        public static int CAPSLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="NUMLOCK_ON")
+        public static int NUMLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="SCROLLLOCK_ON")
+        public static int SCROLLLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="ENHANCED_KEY")
+        public static int ENHANCED_KEY;
+        @JniField(flags={CONSTANT}, accessor="LEFT_ALT_PRESSED")
+        public static int LEFT_ALT_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="LEFT_CTRL_PRESSED")
+        public static int LEFT_CTRL_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="RIGHT_ALT_PRESSED")
+        public static int RIGHT_ALT_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="RIGHT_CTRL_PRESSED")
+        public static int RIGHT_CTRL_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="SHIFT_PRESSED")
+        public static int SHIFT_PRESSED;
+
+        @JniField(accessor="bKeyDown")
+        public boolean keyDown;
+        @JniField(accessor="wRepeatCount")
+        public short repeatCount;
+        @JniField(accessor="wVirtualKeyCode")
+        public short keyCode;
+        @JniField(accessor="wVirtualScanCode")
+        public short scanCode;
+        @JniField(accessor="uChar.UnicodeChar")
+        public char uchar;
+        @JniField(accessor="dwControlKeyState")
+        public int controlKeyState;
+
+        public String toString() {
+            return "KEY_EVENT_RECORD{" +
+                    "keyDown=" + keyDown +
+                    ", repeatCount=" + repeatCount +
+                    ", keyCode=" + keyCode +
+                    ", scanCode=" + scanCode +
+                    ", uchar=" + uchar +
+                    ", controlKeyState=" + controlKeyState +
+                    '}';
+        }
+    }
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms683499(v=VS.85).aspx
+     */
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class INPUT_RECORD {
+
+        static {
+            LIBRARY.load();
+            init();
+        }
+
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(INPUT_RECORD)")
+        public static int SIZEOF;
+        @JniField(flags={CONSTANT}, accessor="KEY_EVENT")
+        public static short KEY_EVENT;
+
+        @JniField(accessor="EventType")
+        public short eventType;
+        @JniField(accessor="Event.KeyEvent")
+        public KEY_EVENT_RECORD keyEvent = new KEY_EVENT_RECORD();
+    }
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms684961(v=VS.85).aspx
+     * @param handle
+     * @param length must be exactly 1
+     * @param eventsCount
+     * @return
+     */
+    private static final native int ReadConsoleInputW(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
+            INPUT_RECORD inputRecord,
+            int length, // must be one
+            int[] eventsCount);
+
+    /**
+     * Return a key event record (discard other events until a key event is
+     * found)
+     * @param handle
+     * @return null on read errors
+     */
+    public static KEY_EVENT_RECORD readKeyEvent(
+            long handle) {
+        int[] count = new int[1];
+        INPUT_RECORD inputRecord = new INPUT_RECORD();
+        int loop = 0; // give up after some arbitrary threshold
+        int res;
+        while (loop < 1000) {
+            res = ReadConsoleInputW(handle, inputRecord, 1, count);
+            if (res != 0 && count[0] == 1) {
+                if (inputRecord.eventType == INPUT_RECORD.KEY_EVENT) {
+                    return inputRecord.keyEvent;
+                }
+            } else {
+                return null;
+            }
+            loop++;
+        }
+        return null;
+    }
 }
