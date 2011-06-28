@@ -20,6 +20,8 @@ import static org.fusesource.jansi.internal.Kernel32.*;
 
 import org.fusesource.jansi.internal.Kernel32.CONSOLE_SCREEN_BUFFER_INFO;
 
+import java.io.IOException;
+
 /**
  * 
  * @author <a href="http://hiramchirino.com">Hiram Chirino</a>
@@ -34,7 +36,7 @@ public class WindowsSupport {
 		return new String(data);
 	}
 	
-    //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////                                       00
     //
     // The following helper methods are for jline 
     //
@@ -75,11 +77,23 @@ public class WindowsSupport {
         return info.windowHeight();        
     }
 
-    public static KEY_EVENT_RECORD readConsoleInput() {
+    public static int writeConsole(String msg) {
+        long hConsole = GetStdHandle (STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE)
+            return 0;
+        char[] chars = msg.toCharArray();
+        int[] written =  new int[1];
+        if (WriteConsoleW(hConsole, chars, chars.length, written, 0) != 0) {
+            return written[0];
+        } else {
+            return 0;
+        }
+    }
+    public static INPUT_RECORD[] readConsoleInput(int count) throws IOException {
         long hConsole = GetStdHandle (STD_INPUT_HANDLE);
         if (hConsole == INVALID_HANDLE_VALUE)
             return null;
-        return readKeyEvent(hConsole); 
+        return readConsoleInputHelper(hConsole, count);
     }
 
 }

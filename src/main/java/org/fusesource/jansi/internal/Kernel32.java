@@ -23,6 +23,8 @@ import org.fusesource.hawtjni.runtime.JniField;
 import org.fusesource.hawtjni.runtime.JniMethod;
 import org.fusesource.hawtjni.runtime.Library;
 
+import java.io.IOException;
+
 import static org.fusesource.hawtjni.runtime.ArgFlag.*;
 import static org.fusesource.hawtjni.runtime.ClassFlag.*;
 import static org.fusesource.hawtjni.runtime.FieldFlag.*;
@@ -388,7 +390,23 @@ public class Kernel32 {
             @JniArg(flags={BY_VALUE}) COORD writeCoord, 
             int[] numberOfCharsWritten);
  
-   
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms687401(v=VS.85).aspx
+     *
+     * @param consoleOutput
+     * @param buffer
+     * @param numberOfCharsToWrite
+     * @param numberOfCharsWritten
+     * @param reserved must be null
+     * @return
+     */
+    public static final native int WriteConsoleW(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput,
+            char[] buffer,
+            int numberOfCharsToWrite,
+            int[] numberOfCharsWritten,
+            @JniArg(cast="LPVOID", flags={POINTER_ARG})long reserved);
+
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683167%28VS.85%29.aspx
      * @param handle
@@ -423,6 +441,20 @@ public class Kernel32 {
     */
    public static final native int SetConsoleTitle(
                @JniArg(flags={UNICODE}) String title);    
+
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms683169(v=VS.85).aspx
+     * @return the current output code page
+     */
+    public static final native int GetConsoleOutputCP();
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms686036(v=VS.85).aspx
+     * @param codePageID
+     * @return non 0 if code page was set
+     */
+    public static final native int SetConsoleOutputCP(int codePageID);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms684166(v=VS.85).aspx
@@ -484,6 +516,145 @@ public class Kernel32 {
     }
 
     /**
+     * see: http://msdn.microsoft.com/en-us/library/ms684239(v=VS.85).aspx
+     */
+    /*
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class MOUSE_EVENT_RECORD {
+
+        static {
+            LIBRARY.load();
+            init();
+        }
+
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(MOUSE_EVENT_RECORD)")
+        public static int SIZEOF;
+        @JniField(flags={CONSTANT}, accessor="FROM_LEFT_1ST_BUTTON_PRESSED")
+        public static int FROM_LEFT_1ST_BUTTON_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="FROM_LEFT_2ND_BUTTON_PRESSED")
+        public static int FROM_LEFT_2ND_BUTTON_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="FROM_LEFT_3RD_BUTTON_PRESSED")
+        public static int FROM_LEFT_3RD_BUTTON_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="FROM_LEFT_4TH_BUTTON_PRESSED")
+        public static int FROM_LEFT_4TH_BUTTON_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="RIGHTMOST_BUTTON_PRESSED")
+        public static int RIGHTMOST_BUTTON_PRESSED;
+
+        @JniField(flags={CONSTANT}, accessor="CAPSLOCK_ON")
+        public static int CAPSLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="NUMLOCK_ON")
+        public static int NUMLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="SCROLLLOCK_ON")
+        public static int SCROLLLOCK_ON;
+        @JniField(flags={CONSTANT}, accessor="ENHANCED_KEY")
+        public static int ENHANCED_KEY;
+        @JniField(flags={CONSTANT}, accessor="LEFT_ALT_PRESSED")
+        public static int LEFT_ALT_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="LEFT_CTRL_PRESSED")
+        public static int LEFT_CTRL_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="RIGHT_ALT_PRESSED")
+        public static int RIGHT_ALT_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="RIGHT_CTRL_PRESSED")
+        public static int RIGHT_CTRL_PRESSED;
+        @JniField(flags={CONSTANT}, accessor="SHIFT_PRESSED")
+        public static int SHIFT_PRESSED;
+
+        @JniField(flags={CONSTANT}, accessor="DOUBLE_CLICK")
+        public static int DOUBLE_CLICK;
+        @JniField(flags={CONSTANT}, accessor="MOUSE_HWHEELED")
+        public static int MOUSE_HWHEELED;
+        @JniField(flags={CONSTANT}, accessor="MOUSE_MOVED")
+        public static int MOUSE_MOVED;
+        @JniField(flags={CONSTANT}, accessor="MOUSE_WHEELED")
+        public static int MOUSE_WHEELED;
+
+        @JniField(accessor="dwMousePosition")
+        public COORD mousePosition = new COORD();
+        @JniField(accessor="dwButtonState")
+        public int buttonState;
+        @JniField(accessor="dwControlKeyState")
+        public int controlKeyState;
+        @JniField(accessor="dwEventFlags")
+        public int eventFlags;
+
+        public String toString() {
+            return "MOUSE_EVENT_RECORD{" +
+                    "mousePosition=" + mousePosition +
+                    ", buttonState=" + buttonState +
+                    ", controlKeyState=" + controlKeyState +
+                    ", eventFlags=" + eventFlags +
+                    '}';
+        }
+    }
+    */
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms687093(v=VS.85).aspx
+     */
+    /*
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class WINDOW_BUFFER_SIZE_RECORD {
+
+        static {
+            LIBRARY.load();
+            init();
+        }
+
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(WINDOW_BUFFER_SIZE_RECORD)")
+        public static int SIZEOF;
+
+        @JniField(accessor="dwSize")
+        public COORD size = new COORD();
+
+        public String toString() {
+            return "WINDOW_BUFFER_SIZE_RECORD{size=" + size + '}';
+        }
+    }
+    */
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms683149(v=VS.85).aspx
+     */
+    /*
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class FOCUS_EVENT_RECORD {
+        static {
+            LIBRARY.load();
+            init();
+        }
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(WINDOW_BUFFER_SIZE_RECORD)")
+        public static int SIZEOF;
+        @JniField(accessor="bSetFocus")
+        public boolean setFocus;
+    }
+    */
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms684213(v=VS.85).aspx
+     */
+    /*
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
+    public static class MENU_EVENT_RECORD {
+        static {
+            LIBRARY.load();
+            init();
+        }
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(MENU_EVENT_RECORD)")
+        public static int SIZEOF;
+        @JniField(accessor="dwCommandId")
+        public int commandId;
+    }
+    */
+
+    /**
      * see: http://msdn.microsoft.com/en-us/library/ms683499(v=VS.85).aspx
      */
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
@@ -500,49 +671,94 @@ public class Kernel32 {
         public static int SIZEOF;
         @JniField(flags={CONSTANT}, accessor="KEY_EVENT")
         public static short KEY_EVENT;
-
+        /*
+        @JniField(flags={CONSTANT}, accessor="MOUSE_EVENT")
+        public static short MOUSE_EVENT;
+        @JniField(flags={CONSTANT}, accessor="WINDOW_BUFFER_SIZE_EVENT")
+        public static short WINDOW_BUFFER_SIZE_EVENT;
+        @JniField(flags={CONSTANT}, accessor="FOCUS_EVENT")
+        public static short FOCUS_EVENT;
+        @JniField(flags={CONSTANT}, accessor="MENU_EVENT")
+        public static short MENU_EVENT;
+        */
         @JniField(accessor="EventType")
         public short eventType;
         @JniField(accessor="Event.KeyEvent")
         public KEY_EVENT_RECORD keyEvent = new KEY_EVENT_RECORD();
+        /*
+        @JniField(accessor="Event.MouseEvent")
+        public MOUSE_EVENT_RECORD mouseEvent = new MOUSE_EVENT_RECORD();
+        @JniField(accessor="Event.WindowBufferSizeEvent")
+        public WINDOW_BUFFER_SIZE_RECORD windowBufferSizeEvent = new WINDOW_BUFFER_SIZE_RECORD();
+        @JniField(accessor="Event.MenuEvent")
+        public MENU_EVENT_RECORD menuEvent = new MENU_EVENT_RECORD();
+        @JniField(accessor="Event.FocusEvent")
+        public FOCUS_EVENT_RECORD focusEvent = new FOCUS_EVENT_RECORD();
+        */
+        public static final native void memmove (
+          @JniArg(cast="void *", flags={NO_IN, CRITICAL}) INPUT_RECORD dest,
+          @JniArg(cast="const void *", flags={NO_OUT, CRITICAL}) long src,
+          @JniArg(cast="size_t") long size);
+
     }
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms684961(v=VS.85).aspx
      * @param handle
-     * @param length must be exactly 1
+     * @param length
      * @param eventsCount
      * @return
      */
     private static final native int ReadConsoleInputW(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
-            INPUT_RECORD inputRecord,
-            int length, // must be one
+            long inputRecord,
+            int length,
             int[] eventsCount);
+
+    /**
+     * see: http://msdn.microsoft.com/en-us/library/ms683207(v=VS.85).aspx
+     * @param handle
+     * @param numberOfEvents number of unread input records in the console's input buffer
+     * @return
+     */
+    private static final native int GetNumberOfConsoleInputEvents(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
+            int[] numberOfEvents);
 
     /**
      * Return a key event record (discard other events until a key event is
      * found)
      * @param handle
+     * @param count requested number of events
      * @return null on read errors
      */
-    public static KEY_EVENT_RECORD readKeyEvent(
-            long handle) {
-        int[] count = new int[1];
-        INPUT_RECORD inputRecord = new INPUT_RECORD();
-        int loop = 0; // give up after some arbitrary threshold
+    public static INPUT_RECORD[] readConsoleInputHelper(
+            long handle, int count) throws IOException {
+        int[] length = new int[1];
         int res;
-        while (loop < 1000) {
-            res = ReadConsoleInputW(handle, inputRecord, 1, count);
-            if (res != 0 && count[0] == 1) {
-                if (inputRecord.eventType == INPUT_RECORD.KEY_EVENT) {
-                    return inputRecord.keyEvent;
-                }
-            } else {
-                return null;
+        long inputRecordPtr = 0;
+        try {
+            inputRecordPtr = malloc(INPUT_RECORD.SIZEOF * count);
+            if (inputRecordPtr == 0) {
+                throw new IOException("cannot allocate memory with JNI");
             }
-            loop++;
+            res = ReadConsoleInputW(handle, inputRecordPtr, count, length);
+            if (res == 0) {
+                throw new IOException("ReadConsoleInputW failed");
+            }
+            if (length[0] <= 0) {
+                return new INPUT_RECORD[0];
+            }
+            INPUT_RECORD[] records = new INPUT_RECORD[length[0]];
+            for (int i = 0; i < records.length; i++) {
+                records[i] = new INPUT_RECORD();
+                INPUT_RECORD.memmove(records[i], inputRecordPtr + i*INPUT_RECORD.SIZEOF, INPUT_RECORD.SIZEOF);
+            }
+            return records;
+        } finally {
+            if (inputRecordPtr != 0) {
+                free(inputRecordPtr);
+            }
         }
-        return null;
     }
 }
