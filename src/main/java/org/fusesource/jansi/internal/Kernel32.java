@@ -16,12 +16,7 @@
  */
 package org.fusesource.jansi.internal;
 
-import org.fusesource.hawtjni.runtime.ClassFlag;
-import org.fusesource.hawtjni.runtime.JniArg;
-import org.fusesource.hawtjni.runtime.JniClass;
-import org.fusesource.hawtjni.runtime.JniField;
-import org.fusesource.hawtjni.runtime.JniMethod;
-import org.fusesource.hawtjni.runtime.Library;
+import org.fusesource.hawtjni.runtime.*;
 
 import java.io.IOException;
 
@@ -752,7 +747,7 @@ public class Kernel32 {
             INPUT_RECORD[] records = new INPUT_RECORD[length[0]];
             for (int i = 0; i < records.length; i++) {
                 records[i] = new INPUT_RECORD();
-                INPUT_RECORD.memmove(records[i], inputRecordPtr + i*INPUT_RECORD.SIZEOF, INPUT_RECORD.SIZEOF);
+                INPUT_RECORD.memmove(records[i], PointerMath.add(inputRecordPtr, i*INPUT_RECORD.SIZEOF), INPUT_RECORD.SIZEOF);
             }
             return records;
         } finally {
