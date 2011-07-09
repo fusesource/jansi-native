@@ -711,24 +711,45 @@ public class Kernel32 {
             int[] eventsCount);
 
     /**
+     * see: http://msdn.microsoft.com/en-us/library/ms684344(v=VS.85).aspx
+     * @param handle
+     * @param length
+     * @param eventsCount
+     * @return
+     */
+    private static final native int PeekConsoleInputW(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
+            long inputRecord,
+            int length,
+            int[] eventsCount);
+
+    /**
      * see: http://msdn.microsoft.com/en-us/library/ms683207(v=VS.85).aspx
      * @param handle
      * @param numberOfEvents number of unread input records in the console's input buffer
      * @return
      */
-    private static final native int GetNumberOfConsoleInputEvents(
+    public static final native int GetNumberOfConsoleInputEvents(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
             int[] numberOfEvents);
 
     /**
-     * Return a key event record (discard other events until a key event is
-     * found)
+     * see: http://msdn.microsoft.com/en-us/library/ms683147(v=VS.85).aspx
+     * @param handle
+     * @return
+     */
+    public static final native int FlushConsoleInputBuffer(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle);
+
+    /**
+     * Return console input events.
+     *
      * @param handle
      * @param count requested number of events
      * @return null on read errors
      */
     public static INPUT_RECORD[] readConsoleInputHelper(
-            long handle, int count) throws IOException {
+            long handle, int count, boolean peek) throws IOException {
         int[] length = new int[1];
         int res;
         long inputRecordPtr = 0;
@@ -737,7 +758,9 @@ public class Kernel32 {
             if (inputRecordPtr == 0) {
                 throw new IOException("cannot allocate memory with JNI");
             }
-            res = ReadConsoleInputW(handle, inputRecordPtr, count, length);
+            res = peek ?
+                    PeekConsoleInputW(handle, inputRecordPtr, count, length)
+                    : ReadConsoleInputW(handle, inputRecordPtr, count, length);
             if (res == 0) {
                 throw new IOException("ReadConsoleInputW failed");
             }
@@ -756,4 +779,35 @@ public class Kernel32 {
             }
         }
     }
+
+    /**
+     * Return console input key events (discard other events).
+     *
+     * @param count requested number of events
+     * @return array possibly of size smaller then count
+     */
+    public static INPUT_RECORD[] readConsoleKeyInput(long handle, int count, boolean peek)
+            throws IOException {
+        while (true) {
+            // read events until we have keyboard events, the queue could be full
+            // of mouse events.
+            INPUT_RECORD[] evts = readConsoleInputHelper(handle, count, peek);
+            int keyEvtCount = 0;
+            for (INPUT_RECORD evt : evts) {
+                if (evt.eventType == INPUT_RECORD.KEY_EVENT) keyEvtCount++;
+            }
+            if (keyEvtCount > 0) {
+                INPUT_RECORD[] res = new INPUT_RECORD[keyEvtCount];
+                int i = 0;
+                for (INPUT_RECORD evt : evts) {
+                    if (evt.eventType == INPUT_RECORD.KEY_EVENT) {
+                        res[i++] = evt;
+                    }
+                }
+                return res;
+            }
+        }
+    }
+
+
 }

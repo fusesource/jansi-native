@@ -89,11 +89,25 @@ public class WindowsSupport {
             return 0;
         }
     }
+
     public static INPUT_RECORD[] readConsoleInput(int count) throws IOException {
         long hConsole = GetStdHandle (STD_INPUT_HANDLE);
         if (hConsole == INVALID_HANDLE_VALUE)
             return null;
-        return readConsoleInputHelper(hConsole, count);
+        return readConsoleKeyInput(hConsole, count, false);
     }
 
+    public static INPUT_RECORD[] peekConsoleInput(int count) throws IOException {
+        long hConsole = GetStdHandle (STD_INPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE)
+            return null;
+        return readConsoleKeyInput(hConsole, count, true);
+    }
+
+    public static void flushConsoleInputBuffer() {
+        long hConsole = GetStdHandle (STD_INPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE)
+            return;
+        FlushConsoleInputBuffer(hConsole);
+    }
 }
