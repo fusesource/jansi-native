@@ -37,7 +37,7 @@
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/jansinative.git</release-altGitURL>
-    <hawtjni-version>1.2</hawtjni-version>
+    <hawtjni-version>1.3-SNAPSHOT</hawtjni-version>
   </properties>
   
   <url>http://${forge-project-id}.fusesource.org</url>
