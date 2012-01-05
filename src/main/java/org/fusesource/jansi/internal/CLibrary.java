@@ -31,25 +31,25 @@ import org.fusesource.hawtjni.runtime.Library;
  */
 @JniClass()
 public class CLibrary {
-	
+    
     private static final Library LIBRARY = new Library("jansi", CLibrary.class);    
-	static {
+    static {
         LIBRARY.load();
         init();
-	}
+    }
 
     @JniMethod(flags={CONSTANT_INITIALIZER})
     private static final native void init();
 
     @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
-	public static int STDIN_FILENO;
+    public static int STDIN_FILENO;
     @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
-	public static int STDOUT_FILENO;
+    public static int STDOUT_FILENO;
     @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
-	public static int STDERR_FILENO;
+    public static int STDERR_FILENO;
 
     @JniField(flags={CONSTANT}, accessor="1", conditional="defined(HAVE_ISATTY)")
-	public static boolean HAVE_ISATTY;	    
+    public static boolean HAVE_ISATTY;      
     @JniMethod(conditional="defined(HAVE_ISATTY)")
     public static final native int isatty(int fd);
 
