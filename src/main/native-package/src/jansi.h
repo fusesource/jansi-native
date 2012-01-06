@@ -25,8 +25,19 @@
     /* Windows based build */
     #define HAVE_STDLIB_H 1
     #define HAVE_STRINGS_H 1
+
+    #define STDIN_FILENO 0
+    #define STDOUT_FILENO 1
+    #define STDERR_FILENO 2
+    #define HAVE_ISATTY
+
     #include <windows.h>
     #include <conio.h>
+    #include <io.h>
+
+    #define isatty _isatty
+    #define getch _getch
+
   #endif
 #endif
 
