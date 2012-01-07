@@ -43,13 +43,13 @@ public class CLibrary {
 
     @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
     public static int STDIN_FILENO;
-    @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
+    @JniField(flags={CONSTANT}, conditional="defined(STDOUT_FILENO)")
     public static int STDOUT_FILENO;
-    @JniField(flags={CONSTANT}, conditional="defined(STDIN_FILENO)")
+    @JniField(flags={CONSTANT}, conditional="defined(STDERR_FILENO)")
     public static int STDERR_FILENO;
 
     @JniField(flags={CONSTANT}, accessor="1", conditional="defined(HAVE_ISATTY)")
-    public static boolean HAVE_ISATTY;      
+    public static boolean HAVE_ISATTY;
     @JniMethod(conditional="defined(HAVE_ISATTY)")
     public static final native int isatty(int fd);
 
