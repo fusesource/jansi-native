@@ -1,98 +1,5 @@
 EXPORTS
 
-    ??0__non_rtti_object@@QEAA@AEBV0@@Z
-    ??0__non_rtti_object@@QEAA@PEBD@Z
-    ??0bad_cast@@AAE@PBQBD@Z
-    ??0bad_cast@@AEAA@PEBQEBD@Z
-    ??0bad_cast@@QAE@ABQBD@Z
-    ??0bad_cast@@QEAA@AEBQEBD@Z
-    ??0bad_cast@@QEAA@AEBV0@@Z
-    ??0bad_cast@@QEAA@PEBD@Z
-    ??0bad_typeid@@QEAA@AEBV0@@Z
-    ??0bad_typeid@@QEAA@PEBD@Z
-    ??0exception@@QEAA@AEBQEBD@Z
-    ??0exception@@QEAA@AEBQEBDH@Z
-    ??0exception@@QEAA@AEBV0@@Z
-    ??0exception@@QEAA@XZ
-    ??1__non_rtti_object@@UEAA@XZ
-    ??1bad_cast@@UEAA@XZ
-    ??1bad_typeid@@UEAA@XZ
-    ??1exception@@UEAA@XZ
-    ??1type_info@@UEAA@XZ
-    ??2@YAPEAX_K@Z
-    ??2@YAPEAX_KHPEBDH@Z
-    ??3@YAXPEAX@Z
-    ??4__non_rtti_object@@QEAAAEAV0@AEBV0@@Z
-    ??4bad_cast@@QEAAAEAV0@AEBV0@@Z
-    ??4bad_typeid@@QEAAAEAV0@AEBV0@@Z
-    ??4exception@@QEAAAEAV0@AEBV0@@Z
-    ??8type_info@@QEBAHAEBV0@@Z
-    ??9type_info@@QEBAHAEBV0@@Z
-    ??_7__non_rtti_object@@6B@
-    ??_7bad_cast@@6B@
-    ??_7bad_typeid@@6B@
-    ??_7exception@@6B@
-    ??_Fbad_cast@@QEAAXXZ
-    ??_Fbad_typeid@@QEAAXXZ
-    ??_U@YAPEAX_K@Z
-    ??_U@YAPEAX_KHPEBDH@Z
-    ??_V@YAXPEAX@Z
-    ?_query_new_handler@@YAP6AH_K@ZXZ
-    ?_query_new_mode@@YAHXZ
-    ?_set_new_handler@@YAP6AH_K@ZP6AH0@Z@Z
-    ?_set_new_mode@@YAHH@Z
-    ?_set_se_translator@@YAP6AXIPEAU_EXCEPTION_POINTERS@@@ZP6AXI0@Z@Z
-    ?before@type_info@@QEBAHAEBV1@@Z
-    ?name@type_info@@QEBAPEBDXZ
-    ?raw_name@type_info@@QEBAPEBDXZ
-    ?set_new_handler@@YAP6AXXZP6AXXZ@Z
-    ?set_terminate@@YAP6AXXZP6AXXZ@Z
-    ?set_unexpected@@YAP6AXXZP6AXXZ@Z
-    ?terminate@@YAXXZ
-    ?unexpected@@YAXXZ
-    ?what@exception@@UEBAPEBDXZ
-    _CrtCheckMemory
-    _CrtDbgBreak
-    _CrtDbgReport
-    _CrtDbgReportV
-    _CrtDbgReportW
-    _CrtDbgReportWV
-    _CrtDoForAllClientObjects
-    _CrtDumpMemoryLeaks
-    _CrtIsMemoryBlock
-    _CrtIsValidHeapPointer
-    _CrtIsValidPointer
-    _CrtMemCheckpoint
-    _CrtMemDifference
-    _CrtMemDumpAllObjectsSince
-    _CrtMemDumpStatistics
-    _CrtReportBlockType
-    _CrtSetAllocHook
-    _CrtSetBreakAlloc
-    _CrtSetDbgBlockType
-    _CrtSetDbgFlag
-    _CrtSetDumpClient
-    _CrtSetReportFile
-    _CrtSetReportHook
-    _CrtSetReportHook2
-    _CrtSetReportMode
-    _CxxThrowException
-    _Getdays
-    _Getmonths
-    _Gettnames
-    _HUGE
-    _Strftime
-    _XcptFilter
-    
-    __CppXcptFilter
-    __CxxFrameHandler
-    __CxxFrameHandler2
-    __CxxFrameHandler3
-    __DestructExceptionObject
-    __RTCastToVoid
-    __RTDynamicCast
-    __RTtypeid
-    __STRINGTOLD
     ___lc_codepage_func
     ___lc_collate_cp_func
     ___lc_handle_func
@@ -102,13 +9,18 @@ EXPORTS
     __argc
     __argv
     __badioinfo
+    __CppXcptFilter
     __crtCompareStringA
     __crtCompareStringW
     __crtGetLocaleInfoW
     __crtGetStringTypeW
     __crtLCMapStringA
     __crtLCMapStringW
+    __CxxFrameHandler
+    __CxxFrameHandler2
+    __CxxFrameHandler3
     __daylight
+    __DestructExceptionObject
     __dllonexit
     __doserrno
     __dstbias
@@ -128,16 +40,20 @@ EXPORTS
     __pioinfo
     __pwctype_func
     __pxcptinfoptrs
+    __RTCastToVoid
+    __RTDynamicCast
+    __RTtypeid
     __set_app_type
     __setlc_active
     __setusermatherr
+    __STRINGTOLD
     __strncnt
     __threadhandle
     __threadid
     __toascii
+    __uncaught_exception
     __unDName
     __unDNameEx
-    __uncaught_exception
     __unguarded_readlc_active
     __wargv
     __wcserror
@@ -166,9 +82,9 @@ EXPORTS
     _atodbl_l
     _atof_l
     _atoflt_l
+    _atoi_l
     _atoi64
     _atoi64_l
-    _atoi_l
     _atol_l
     _atoldbl
     _atoldbl_l
@@ -187,7 +103,6 @@ EXPORTS
     _chdir
     _chdrive
     _chgsign
-    _chgsignf
     _chmod
     _chsize
     _chsize_s
@@ -201,7 +116,6 @@ EXPORTS
     _controlfp
     _controlfp_s
     _copysign
-    _copysignf
     _cprintf
     _cprintf_l
     _cprintf_p
@@ -213,7 +127,32 @@ EXPORTS
     _creat
     _crtAssertBusy
     _crtBreakAlloc
+    _CrtCheckMemory
+    _CrtDbgBreak
     _crtDbgFlag
+    _CrtDbgReport
+    _CrtDbgReportV
+    _CrtDbgReportW
+    _CrtDbgReportWV
+    _CrtDoForAllClientObjects
+    _CrtDumpMemoryLeaks
+    _CrtIsMemoryBlock
+    _CrtIsValidHeapPointer
+    _CrtIsValidPointer
+    _CrtMemCheckpoint
+    _CrtMemDifference
+    _CrtMemDumpAllObjectsSince
+    _CrtMemDumpStatistics
+    _CrtReportBlockType
+    _CrtSetAllocHook
+    _CrtSetBreakAlloc
+    _CrtSetDbgBlockType
+    _CrtSetDbgFlag
+    _CrtSetDumpClient
+    _CrtSetReportFile
+    _CrtSetReportHook
+    _CrtSetReportHook2
+    _CrtSetReportMode
     _cscanf
     _cscanf_l
     _cscanf_s
@@ -234,6 +173,7 @@ EXPORTS
     _cwscanf_l
     _cwscanf_s
     _cwscanf_s_l
+    _CxxThrowException
     _daylight
     _difftime32
     _difftime64
@@ -277,12 +217,10 @@ EXPORTS
     _findnext64
     _findnexti64
     _finite
-    _finitef
     _flsbuf
     _flushall
     _fmode
     _fpclass
-    _fpclassf
     _fpreset
     _fprintf_l
     _fprintf_p
@@ -338,14 +276,17 @@ EXPORTS
     _getch
     _getche
     _getcwd
+    _Getdays
     _getdcwd
     _getdiskfree
     _getdrive
     _getdrives
     _getmaxstdio
     _getmbcp
+    _Getmonths
     _getpid
     _getsystime
+    _Gettnames
     _getw
     _getwch
     _getwche
@@ -358,8 +299,8 @@ EXPORTS
     _heapmin
     _heapset
     _heapwalk
+    _HUGE
     _hypot
-    _hypotf
     _i64toa
     _i64toa_s
     _i64tow
@@ -437,7 +378,6 @@ EXPORTS
     _ismbstrail
     _ismbstrail_l
     _isnan
-    _isnanf
     _isprint_l
     _isspace_l
     _isupper_l
@@ -464,7 +404,6 @@ EXPORTS
     _kbhit
     _lfind
     _lfind_s
-    _local_unwind
     _localtime32
     _localtime32_s
     _localtime64
@@ -472,7 +411,6 @@ EXPORTS
     _lock
     _locking
     _logb
-    _logbf
     _lrotl
     _lrotr
     _lsearch
@@ -636,9 +574,7 @@ EXPORTS
     _mktime32
     _mktime64
     _msize
-    _msize_dbg
     _nextafter
-    _nextafterf
     _onexit
     _open
     _open_osfhandle
@@ -671,7 +607,6 @@ EXPORTS
     _rotr
     _rotr64
     _scalb
-    _scalbf
     _scanf_l
     _scanf_s_l
     _scprintf
@@ -692,7 +627,6 @@ EXPORTS
     _set_sbh_threshold
     _seterrormode
     _setjmp
-    _setjmpex
     _setmaxstdio
     _setmbcp
     _setmode
@@ -745,6 +679,7 @@ EXPORTS
     _strdup_dbg
     _strerror
     _strerror_s
+    _Strftime
     _stricmp
     _stricmp_l
     _stricoll
@@ -1012,30 +947,27 @@ EXPORTS
     _wtof
     _wtof_l
     _wtoi
+    _wtoi_l
     _wtoi64
     _wtoi64_l
-    _wtoi_l
     _wtol
     _wtol_l
     _wunlink
     _wutime
     _wutime32
     _wutime64
+    _XcptFilter
     _y0
     _y1
     _yn
     abort
     abs
     acos
-    acosf
     asctime
     asctime_s
     asin
-    asinf
     atan
     atan2
-    atan2f
-    atanf
     atexit
     atof
     atoi
@@ -1045,20 +977,16 @@ EXPORTS
     btowc
     calloc
     ceil
-    ceilf
     clearerr
     clearerr_s
     clock
     cos
-    cosf
     cosh
-    coshf
     ctime
     difftime
     div
     exit
     exp
-    expf
     fabs
     fclose
     feof
@@ -1070,9 +998,7 @@ EXPORTS
     fgetwc
     fgetws
     floor
-    floorf
     fmod
-    fmodf
     fopen
     fopen_s
     fprintf
@@ -1137,8 +1063,6 @@ EXPORTS
     localtime
     log
     log10
-    log10f
-    logf
     longjmp
     malloc
     mblen
@@ -1159,10 +1083,8 @@ EXPORTS
     memset
     mktime
     modf
-    modff
     perror
     pow
-    powf
     printf
     printf_s
     putc
@@ -1182,18 +1104,14 @@ EXPORTS
     scanf
     scanf_s
     setbuf
-    setjmp
     setlocale
     setvbuf
     signal
     sin
-    sinf
     sinh
-    sinhf
     sprintf
     sprintf_s
     sqrt
-    sqrtf
     srand
     sscanf
     sscanf_s
@@ -1231,9 +1149,7 @@ EXPORTS
     swscanf_s
     system
     tan
-    tanf
     tanh
-    tanhf
     time
     tmpfile
     tmpfile_s

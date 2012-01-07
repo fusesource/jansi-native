@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- msbuild vs2008.vcxproj  -->
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
@@ -98,9 +98,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(ProjectDir)\src\windows\win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib;%(AdditionalDependencies)</AdditionalDependencies>      
+      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -128,9 +128,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>$(ProjectDir)\src\windows\win64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib;%(AdditionalDependencies)</AdditionalDependencies>      
+      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -184,11 +184,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include=".\src\hawtjni.c"/>
-    <ClCompile Include=".\src\jansi.c"/>
-    <ClCompile Include=".\src\jansi_stats.c"/>
-    <ClCompile Include=".\src\jansi_structs.c"/>
-    <ClCompile Include=".\src\windows\crtdll.c"/>
+    <ClCompile Include=".\src\hawtjni.c" />
+    <ClCompile Include=".\src\jansi.c" />
+    <ClCompile Include=".\src\jansi_stats.c" />
+    <ClCompile Include=".\src\jansi_structs.c" />
+    <ClCompile Include=".\src\windows\crtdll.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\windows\msvcrt.def">
+      <Command Condition="'$(Configuration)|$(Platform)'=='release|Win32'">lib /nologo /machine:$(Platform) /def:%(FullPath) /out:$(IntDir)%(Filename).lib</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='release|Win32'">$(IntDir)%(Filename).lib;$(IntDir)%(Filename).exp</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='release|x64'">lib /nologo /machine:$(Platform) /def:%(FullPath) /out:$(IntDir)%(Filename).lib</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='release|x64'">$(IntDir)%(Filename).lib;$(IntDir)%(Filename).exp</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</ExcludedFromBuild>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

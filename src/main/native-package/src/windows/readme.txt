@@ -19,16 +19,22 @@ but most of it is not needed if the thing is small, and plain C
 msvcrt.lib
 ----------
 The msvcrt.lib files (32/64 bit) are generated from the Win7 msvcrt.dll.
+The msvcrt.def file is generated once "by hand" and submited as part of the project
+The msvcrt.lib file is generated ad build time from msvcrt.def
+
    - dumpbin.exe /exports msvcrt.dll > msvcrt.dump
-   - created msvcrt.def from msvcrt.dump (just removed a bunch of extra info)
-   - lib /machine:X32 /def:msvcrt.def /out:msvcrt.lib
+   - Created msvcrt.def from msvcrt.dump (just removed a bunch of extra info)
+   - The msvcrt.def file in this project is an intersection of the 32/64 bit versions
+     No problem, the excluded functions are really-really obscure.
+     In fact, it is enough to list in msvcrt.def the few functions we use, and add more by hand as needed
+   - Added as a custom build step lib /machine:X32 /def:msvcrt.def /out:msvcrt.lib
      (or /machine:X64, of course)
 
 vs2010.vcxproj
 --------------
-     - Sources: added crt_my/crtdll.c
-     - Linker - General: added crt_my/$(Platform) as Additional Library Directory
-     - Linker - Input: Ignore All Default Libraries (/NODEFAULTLIB)
-     - Linker - Input: removed user32.lib; ... ;odbccp32.lib,
-       and added msvcrt.lib;RunTmChk.lib instead
+     - Sources: added crtdll.c
+     - Sources: added msvcrt.def, with a custom build step that generates the .lib
+     - Linker - General: added $(IntDir) as "Additional Library Directory" (for msvcrt.lib)
+     - Linker - Input: "Ignore All Default Libraries" (/NODEFAULTLIB)
+     - Linker - Input: removed user32.lib; ... ;odbccp32.lib, and added msvcrt.lib;RunTmChk.lib instead
        (RunTmChk.lib is in the VS lib folder, and needed for security_check_cookie)
