@@ -706,7 +706,7 @@ public class Kernel32 {
      */
     private static final native int ReadConsoleInputW(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
-            long inputRecord,
+            @JniArg(cast="PINPUT_RECORD", flags={POINTER_ARG}) long inputRecord,
             int length,
             int[] eventsCount);
 
@@ -719,7 +719,7 @@ public class Kernel32 {
      */
     private static final native int PeekConsoleInputW(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
-            long inputRecord,
+            @JniArg(cast="PINPUT_RECORD", flags={POINTER_ARG}) long inputRecord,
             int length,
             int[] eventsCount);
 

@@ -14,43 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-#ifndef JANSI_H
-#define JANSI_H
 
-#ifdef HAVE_CONFIG_H
-  /* configure based build.. we will use what it discovered about the platform */
-  #include "config.h"
-#else
-  #if defined(_WIN32) || defined(_WIN64)
-    /* Windows based build */
-    #define HAVE_STDLIB_H 1
-    #define HAVE_STRINGS_H 1
+#if defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
 
-    #define STDIN_FILENO 0
-    #define STDOUT_FILENO 1
-    #define STDERR_FILENO 2
-    #define HAVE_ISATTY
+void __cdecl __security_init_cookie(void);
 
-    #include <windows.h>
-    #include <conio.h>
-    #include <io.h>
+BOOL WINAPI _DllMainCRTStartup(HANDLE hDllHandle, DWORD dwReason, LPVOID lpreserved)
+{
+	if (dwReason == DLL_PROCESS_ATTACH)
+		__security_init_cookie();
 
-    #define isatty _isatty
-    #define getch _getch
+	return TRUE;
+}
 
-  #endif
-#endif
-
-#ifdef HAVE_UNISTD_H
-  #include <unistd.h>
-#endif
-
-#ifdef HAVE_STDLIB_H
-  #include <stdlib.h>
-#endif
-
-#ifdef HAVE_STRINGS_H
-  #include <string.h>
-#endif
-
-#endif /* JANSI_H */
+#endif /* defined(_WIN32) || defined(_WIN64) */
