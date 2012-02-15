@@ -2,6 +2,13 @@
 ===========
 [logo]: http://jansi.fusesource.org/images/project-logo.png "Jansi"
 
+
+## [Jansi Native 1.4][1_4], released 2012-02-15
+
+d2c93b8 Generating msvcrt.lib at build time (from msvcrt.def)
+46e933f - Added License header (ASL 2.0 like everything else) - Added readme.txt to the windows directory with info of how .lib files were created
+5b092a8 - Added support for isatty - Fixed values and conditions for STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO - Bumped version to 1.8 to stay in sync with jansi - Cleaned a few warnings at C compile time - Link against the system msvcrt.dll (so no need for VC redistributables)
+
 ## [Jansi Native 1.3][1_3], released 2011-09-21
 
 44eb7aa Adding support for PeekConsoleInputW, FlushConsoleInputBuffer so that CTRL-C can be handled by jline. Discarding mouse events on readConsoleInput.
