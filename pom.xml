@@ -305,12 +305,22 @@
       <id>download</id>
       <repositories>
         <repository>
+          <id>fusesource.nexus.public</id>
+          <name>FuseSource Community Public Repository</name>
+          <url>http://repo.fusesource.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
           <id>fusesource.nexus.snapshot</id>
           <name>FuseSource Community Snapshot Repository</name>
           <url>http://repo.fusesource.com/nexus/content/groups/public-snapshots</url>
         </repository>
       </repositories>
       <pluginRepositories>
+        <pluginRepository>
+          <id>fusesource.nexus.public</id>
+          <name>FuseSource Community Public Repository</name>
+          <url>http://repo.fusesource.com/nexus/content/groups/public</url>
+        </pluginRepository>
         <pluginRepository>
           <id>fusesource.nexus.snapshot</id>
           <name>FuseSource Community Snapshot Repository</name>
