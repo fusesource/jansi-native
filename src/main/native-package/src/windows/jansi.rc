@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009, Progress Software Corporation and/or its 
+ * Copyright (C) 2013, Red Had, Inc. and/or its 
  * subsidiaries or affiliates.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,13 +32,13 @@
   "limitations under the License."
 
 #define STR_COPYRIGHT \
-  "Copyright © 2009, Progress Software Corporation and/or its\r\n"        \
+  "Copyright © 2013, Red Hat, Inc. and/or its\r\n"        \
   "subsidiaries or affiliates. All rights reserved."
 
-#define STR_COMPANY         "Progress Software Corporation"
-#define STR_TRADEMARK       "™ Progress Software Corporation"
+#define STR_COMPANY         "Red Hat®, Inc."
+#define STR_TRADEMARK       "™ Red Hat Inc."
 #ifndef STR_PRODUCT
-#define STR_PRODUCT         "Jansi is a java library for generating and interpreting ANSI escape sequences."
+#define STR_PRODUCT         "Jansi - Java library for generating and interpreting ANSI escape sequences."
 #endif
 #ifndef STR_INTNAME
 #define STR_INTNAME         "jansi"
