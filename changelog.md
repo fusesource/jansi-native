@@ -2,6 +2,15 @@
 ===========
 [logo]: http://jansi.fusesource.org/images/project-logo.png "Jansi"
 
+## [Jansi Native 1.5][1_5], released 2013-03-25
+
+d5e1606 Add windows nmake Makefile
+01cfbdd Add .rc file to the msbuild project
+803ae7f Add the public repo
+7dbe4f5 Switch to new release of hawtjni that allows us to force the use of msbuild on windows.
+d891301 Modify owner
+9b30bc1 Add .rc file
+5392bef Ensure we have standard file attributes
 
 ## [Jansi Native 1.4][1_4], released 2012-02-15
 
