@@ -53,4 +53,16 @@
   #include <string.h>
 #endif
 
+#ifdef HAVE_JANSI_TERM_H
+  #include <term.h>
+#endif
+
+#ifdef HAVE_JANSI_LIBUTIL_H
+  #include <libutil.h>
+#endif
+
+#ifdef HAVE_JANSI_UTIL_H
+  #include <util.h>
+#endif
+
 #endif /* JANSI_H */

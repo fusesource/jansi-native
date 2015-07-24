@@ -18,4 +18,13 @@ dnl ---------------------------------------------------------------------------
 AC_DEFUN([CUSTOM_M4_SETUP],
 [
   AC_CHECK_LIB([c], [isatty],[AC_DEFINE([HAVE_ISATTY], [1], [Define to 1 if you have the isatty function.])])
+  AC_CHECK_LIB([c], [ttyname],[AC_DEFINE([HAVE_TTYNAME], [1], [Define to 1 if you have the ttyname function.])])
+  AC_CHECK_LIB([c], [ttyslot],[AC_DEFINE([HAVE_TTYSLOT], [1], [Define to 1 if you have the ttyslot function.])])
+  AC_CHECK_LIB([c], [openpty],[AC_DEFINE([HAVE_OPENPTY], [1], [Define to 1 if you have the openpty function.])])
+  AC_CHECK_LIB([c], [tcgetattr],[AC_DEFINE([HAVE_TCGETATTR], [1], [Define to 1 if you have the tcgetattr function.])])
+  AC_CHECK_LIB([c], [tcsetattr],[AC_DEFINE([HAVE_TCSETATTR], [1], [Define to 1 if you have the tcsetattr function.])])
+  AC_CHECK_LIB([c], [ioctl],[AC_DEFINE([HAVE_IOCTL], [1], [Define to 1 if you have the ioctl function.])])
+  AC_CHECK_HEADER([term.h], [AC_DEFINE([HAVE_JANSI_TERM_H], 1, [Header term.h])])
+  AC_CHECK_HEADER([libutil.h], [AC_DEFINE([HAVE_JANSI_LIBUTIL_H], [1], [Header libutil.h])])
+  AC_CHECK_HEADER([util.h], [AC_DEFINE([HAVE_JANSI_UTIL_H], [1], [Header util.h])])
 ])
