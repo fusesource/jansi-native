@@ -313,7 +313,6 @@ public class Kernel32 {
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms679360(VS.85).aspx
      * 
-     * @param handle
      * @return
      */
     public static final native int GetLastError();
@@ -326,7 +325,7 @@ public class Kernel32 {
      * @param languageId
      * @param buffer
      * @param size
-     * @param arguments
+     * @param args
      * @return
      */
     public static final native int FormatMessageW(
@@ -336,7 +335,7 @@ public class Kernel32 {
             int languageId, 
             @JniArg(cast="void *", flags={NO_IN, CRITICAL})byte[] buffer, 
             int size,
-            @JniArg(cast="void *", flags={NO_IN, CRITICAL, SENTINEL})long []args
+            @JniArg(cast="void *", flags={NO_IN, CRITICAL, SENTINEL})long[] args
             );
     
     
@@ -374,7 +373,7 @@ public class Kernel32 {
      * @param consoleOutput
      * @param character
      * @param length
-     * @param dwWriteCoord
+     * @param writeCoord
      * @param numberOfCharsWritten
      * @return
      */
