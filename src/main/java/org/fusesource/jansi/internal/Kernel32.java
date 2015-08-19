@@ -384,7 +384,24 @@ public class Kernel32 {
             int length, 
             @JniArg(flags={BY_VALUE}) COORD writeCoord, 
             int[] numberOfCharsWritten);
- 
+
+    /**
+     * see: https://msdn.microsoft.com/en-us/library/ms682662%28VS.85%29.aspx
+     *
+     * @param consoleOutput
+     * @param attribute
+     * @param length
+     * @param writeCoord
+     * @param numberOfAttrsWritten
+     * @return
+     */
+    public static final native int FillConsoleOutputAttributeW(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput,
+            short attribute,
+            int length,
+            @JniArg(flags={BY_VALUE}) COORD writeCoord,
+            int[] numberOfAttrsWritten);
+
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms687401(v=VS.85).aspx
      *
