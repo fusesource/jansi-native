@@ -88,24 +88,24 @@ public class CLibrary {
     /*
      * Commands passed to tcsetattr() for setting the termios structure.
      */
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TCSANOW)")
     public static int TCSANOW;		    /* make change immediate */
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TCSADRAIN)")
     public static int TCSADRAIN;		/* drain output, then change */
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TCSAFLUSH)")
     public static int TCSAFLUSH;		/* drain output, flush input */
 
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCGETA)")
     public static long TIOCGETA;
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCSETA)")
     public static long TIOCSETA;
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCGETD)")
     public static long TIOCGETD;
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCSETD)")
     public static long TIOCSETD;
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCGWINSZ)")
     public static long TIOCGWINSZ;
-    @JniField(flags={CONSTANT})
+    @JniField(flags={CONSTANT}, conditional="defined(TIOCSWINSZ)")
     public static long TIOCSWINSZ;
 
     @JniMethod(conditional="defined(HAVE_IOCTL)")
