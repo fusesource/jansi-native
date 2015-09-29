@@ -347,7 +347,7 @@ public class Kernel32 {
      */
     public static final native int GetConsoleScreenBufferInfo(
             @JniArg(cast="HANDLE", flags={POINTER_ARG})long consoleOutput, 
-            CONSOLE_SCREEN_BUFFER_INFO consoleScreenBufferInfo);
+            @JniArg(flags={NO_IN}) CONSOLE_SCREEN_BUFFER_INFO consoleScreenBufferInfo);
     
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683231%28VS.85%29.aspx
@@ -365,7 +365,7 @@ public class Kernel32 {
      */
     public static final native int SetConsoleCursorPosition(
             @JniArg(cast="HANDLE", flags={POINTER_ARG})long consoleOutput, 
-            @JniArg(flags={BY_VALUE}) COORD cursorPosition);
+            @JniArg(flags={BY_VALUE,NO_OUT}) COORD cursorPosition);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms682663%28VS.85%29.aspx
@@ -381,8 +381,8 @@ public class Kernel32 {
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput, 
             char character, 
             int length, 
-            @JniArg(flags={BY_VALUE}) COORD writeCoord, 
-            int[] numberOfCharsWritten);
+            @JniArg(flags={BY_VALUE,NO_OUT}) COORD writeCoord,
+            @JniArg(flags={NO_IN}) int[] numberOfCharsWritten);
 
     /**
      * see: https://msdn.microsoft.com/en-us/library/ms682662%28VS.85%29.aspx
@@ -398,8 +398,8 @@ public class Kernel32 {
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput,
             short attribute,
             int length,
-            @JniArg(flags={BY_VALUE}) COORD writeCoord,
-            int[] numberOfAttrsWritten);
+            @JniArg(flags={BY_VALUE,NO_OUT}) COORD writeCoord,
+            @JniArg(flags={NO_IN}) int[] numberOfAttrsWritten);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms687401(v=VS.85).aspx
@@ -413,9 +413,9 @@ public class Kernel32 {
      */
     public static final native int WriteConsoleW(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput,
-            char[] buffer,
+            @JniArg(flags={NO_OUT}) char[] buffer,
             int numberOfCharsToWrite,
-            int[] numberOfCharsWritten,
+            @JniArg(flags={NO_IN}) int[] numberOfCharsWritten,
             @JniArg(cast="LPVOID", flags={POINTER_ARG})long reserved);
 
     /**
@@ -425,8 +425,8 @@ public class Kernel32 {
      * @return
      */
     public static final native int GetConsoleMode(
-            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle, 
-            int[] mode);
+            @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
+            @JniArg(flags={NO_IN}) int[] mode);
     
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms686033%28VS.85%29.aspx
@@ -724,7 +724,7 @@ public class Kernel32 {
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
             @JniArg(cast="PINPUT_RECORD", flags={POINTER_ARG}) long inputRecord,
             int length,
-            int[] eventsCount);
+            @JniArg(flags={NO_IN}) int[] eventsCount);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms684344(v=VS.85).aspx
@@ -737,7 +737,7 @@ public class Kernel32 {
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
             @JniArg(cast="PINPUT_RECORD", flags={POINTER_ARG}) long inputRecord,
             int length,
-            int[] eventsCount);
+            @JniArg(flags={NO_IN}) int[] eventsCount);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683207(v=VS.85).aspx
@@ -747,7 +747,7 @@ public class Kernel32 {
      */
     public static final native int GetNumberOfConsoleInputEvents(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long handle,
-            int[] numberOfEvents);
+            @JniArg(flags={NO_IN}) int[] numberOfEvents);
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683147(v=VS.85).aspx
