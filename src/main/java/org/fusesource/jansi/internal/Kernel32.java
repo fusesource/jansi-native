@@ -468,6 +468,38 @@ public class Kernel32 {
     public static final native int SetConsoleOutputCP(int codePageID);
 
     /**
+     * see: https://msdn.microsoft.com/en-us/library/windows/desktop/ms682013(v=vs.85).aspx
+     */
+    @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional = "defined(_WIN32) || defined(_WIN64)")
+    public static class CHAR_INFO {
+
+        static {
+            LIBRARY.load();
+            init();
+        }
+
+        @JniMethod(flags={CONSTANT_INITIALIZER})
+        private static final native void init();
+        @JniField(flags={CONSTANT}, accessor="sizeof(CHAR_INFO)")
+        public static int SIZEOF;
+
+        @JniField(accessor = "Attributes")
+        public short attributes;
+        @JniField(accessor="Char.UnicodeChar")
+        public char unicodeChar;
+    }
+
+    /**
+     * see: https://msdn.microsoft.com/en-us/library/windows/desktop/ms685107(v=vs.85).aspx
+     */
+    public static final native int ScrollConsoleScreenBuffer(
+            @JniArg(cast="HANDLE", flags={POINTER_ARG})long consoleOutput,
+            @JniArg(flags={NO_OUT}) SMALL_RECT scrollRectangle,
+            @JniArg(flags={NO_OUT}) SMALL_RECT clipRectangle,
+            @JniArg(flags={BY_VALUE, NO_OUT}) COORD destinationOrigin,
+            @JniArg(flags={NO_OUT}) CHAR_INFO fill);
+
+    /**
      * see: http://msdn.microsoft.com/en-us/library/ms684166(v=VS.85).aspx
      */
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
