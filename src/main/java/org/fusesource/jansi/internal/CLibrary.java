@@ -114,7 +114,7 @@ public class CLibrary {
             @JniArg long request,
             @JniArg int[] params);
 
-    @JniMethod(conditional="defined(HAVE_IOCTL)")
+    @JniMethod(conditional="defined(HAVE_IOCTL) && defined(HAVE_OPENPTY)")
     public static native int ioctl(
             @JniArg int filedes,
             @JniArg long request,

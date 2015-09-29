@@ -25,6 +25,7 @@ AC_DEFUN([CUSTOM_M4_SETUP],
   AC_CHECK_LIB([c], [tcsetattr],[AC_DEFINE([HAVE_TCSETATTR], [1], [Define to 1 if you have the tcsetattr function.])])
   AC_CHECK_LIB([c], [ioctl],[AC_DEFINE([HAVE_IOCTL], [1], [Define to 1 if you have the ioctl function.])])
   AC_CHECK_HEADER([term.h], [AC_DEFINE([HAVE_JANSI_TERM_H], 1, [Header term.h])])
+  AC_CHECK_HEADER([termios.h], [AC_DEFINE([HAVE_TERMIOS_H], 1, [Header termios.h])])
   AC_CHECK_HEADER([libutil.h], [AC_DEFINE([HAVE_JANSI_LIBUTIL_H], [1], [Header libutil.h])])
   AC_CHECK_HEADER([util.h], [AC_DEFINE([HAVE_JANSI_UTIL_H], [1], [Header util.h])])
 ])
