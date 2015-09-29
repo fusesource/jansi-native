@@ -394,7 +394,7 @@ public class Kernel32 {
      * @param numberOfAttrsWritten
      * @return
      */
-    public static final native int FillConsoleOutputAttributeW(
+    public static final native int FillConsoleOutputAttribute(
             @JniArg(cast="HANDLE", flags={POINTER_ARG}) long consoleOutput,
             short attribute,
             int length,
