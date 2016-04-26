@@ -125,45 +125,7 @@
         <version>2.3</version>
       </plugin>
       
-      <plugin>
-        <groupId>org.fusesource.hawtjni</groupId>
-        <artifactId>maven-hawtjni-plugin</artifactId>
-        <version>${hawtjni-version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-              <goal>build</goal>
-              <goal>package-jar</goal>
-              <goal>package-source</goal>
-            </goals>
-            <configuration>
-              <name>jansi</name>
-              <classified>false</classified>
-              <callbacks>false</callbacks>
-              <windowsBuildTool>msbuild</windowsBuildTool>
-              <copyright><![CDATA[
-/*******************************************************************************
- * Copyright (C) 2009, Progress Software Corporation and/or its 
- * subsidiaries or affiliates.  All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-              ]]></copyright>
-            </configuration>
-          </execution>
-        </executions>        
-      </plugin>
+
       
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -193,15 +155,6 @@
         </configuration>
       </plugin>
       
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
-        <configuration>
-          <classesDirectory>${basedir}/target/generated-sources/hawtjni/lib</classesDirectory>
-        </configuration>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -289,6 +242,70 @@
 
   <profiles>
     
+    <profile>
+      <id>platform</id>
+      <activation>
+        <property>
+          <name>platform</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          
+          <plugin>
+            <groupId>org.fusesource.hawtjni</groupId>
+            <artifactId>maven-hawtjni-plugin</artifactId>
+            <version>${hawtjni-version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                  <goal>build</goal>
+                  <goal>package-jar</goal>
+                  <goal>package-source</goal>
+                </goals>
+                <configuration>
+                  <name>jansi</name>
+                  <classified>false</classified>
+                  <callbacks>false</callbacks>
+                  <windowsBuildTool>msbuild</windowsBuildTool>
+                  <copyright><![CDATA[
+/*******************************************************************************
+ * Copyright (C) 2009, Progress Software Corporation and/or its 
+ * subsidiaries or affiliates.  All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
+                  ]]></copyright>
+                </configuration>
+              </execution>
+            </executions>        
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.3.1</version>
+            <configuration>
+              <classesDirectory>${basedir}/target/generated-sources/hawtjni/lib</classesDirectory>
+            </configuration>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+    
+
     <!-- Profile which enables Universal binaries on OS X -->
     <profile>
       <id>mac</id>
@@ -317,33 +334,6 @@
       </build>
     </profile>
     
-    <profile>
-      <id>download</id>
-      <repositories>
-        <repository>
-          <id>fusesource.nexus.public</id>
-          <name>FuseSource Community Public Repository</name>
-          <url>http://repo.fusesource.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-          <id>fusesource.nexus.snapshot</id>
-          <name>FuseSource Community Snapshot Repository</name>
-          <url>http://repo.fusesource.com/nexus/content/groups/public-snapshots</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <id>fusesource.nexus.public</id>
-          <name>FuseSource Community Public Repository</name>
-          <url>http://repo.fusesource.com/nexus/content/groups/public</url>
-        </pluginRepository>
-        <pluginRepository>
-          <id>fusesource.nexus.snapshot</id>
-          <name>FuseSource Community Snapshot Repository</name>
-          <url>http://repo.fusesource.com/nexus/content/groups/public-snapshots</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
     
   </profiles>
 </project>
