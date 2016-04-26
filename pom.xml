@@ -25,7 +25,7 @@
   </parent>
 
   <groupId>org.fusesource.jansi</groupId>
-  <artifactId>jansi-native</artifactId>
+  <artifactId>jansi-${platform}</artifactId>
   <version>1.6-SNAPSHOT</version>
   
   <name>${project.artifactId}</name>
@@ -38,6 +38,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/jansinative.git</release-altGitURL>
     <hawtjni-version>1.13</hawtjni-version>
+    <platform>native</platform>    
   </properties>
   
   <url>http://${forge-project-id}.fusesource.org</url>
@@ -138,6 +139,7 @@
             </goals>
             <configuration>
               <name>jansi</name>
+              <classified>false</classified>
               <callbacks>false</callbacks>
               <windowsBuildTool>msbuild</windowsBuildTool>
               <copyright><![CDATA[
