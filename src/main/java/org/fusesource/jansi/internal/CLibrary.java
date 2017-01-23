@@ -63,9 +63,6 @@ public class CLibrary {
     public static native String ttyname(
             @JniArg int filedes);
 
-    @JniMethod(conditional="defined(HAVE_TTYSLOT)")
-    public static native int ttyslot();
-
     @JniMethod(conditional="defined(HAVE_OPENPTY)")
     public static native int openpty(
             @JniArg(cast="int *", flags={NO_IN}) int[] amaster,
