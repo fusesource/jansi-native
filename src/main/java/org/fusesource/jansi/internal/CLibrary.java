@@ -59,7 +59,7 @@ public class CLibrary {
     public static native int isatty(
             @JniArg int fd);
 
-    @JniMethod(conditional="defined(HAVE_TTYNAME)")
+    @JniMethod(conditional="FALSE")
     public static native String ttyname(
             @JniArg int filedes);
 
