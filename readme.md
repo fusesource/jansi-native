@@ -5,12 +5,12 @@ Description
 -----------
 
 Jansi Native implements the JNI Libraries used by the 
-[Jansi project](http://jansi.fusesource.org/). 
+[Jansi project](http://fusesource.github.io/jansi/). 
 
 Project Links
 -------------
 
-* [Project Home](http://jansi.fusesource.org/)
+* [Project Home](http://fusesource.github.io/jansi/)
 
 Building on Windows
 -------------------
