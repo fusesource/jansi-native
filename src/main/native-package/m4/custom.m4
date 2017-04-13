@@ -19,7 +19,6 @@ AC_DEFUN([CUSTOM_M4_SETUP],
 [
   AC_CHECK_LIB([c], [isatty],[AC_DEFINE([HAVE_ISATTY], [1], [Define to 1 if you have the isatty function.])])
   AC_CHECK_LIB([c], [ttyname],[AC_DEFINE([HAVE_TTYNAME], [1], [Define to 1 if you have the ttyname function.])])
-  AC_CHECK_LIB([c], [ttyslot],[AC_DEFINE([HAVE_TTYSLOT], [1], [Define to 1 if you have the ttyslot function.])])
   AC_CHECK_LIB([c], [openpty],[AC_DEFINE([HAVE_OPENPTY], [1], [Define to 1 if you have the openpty function.])])
   AC_CHECK_LIB([c], [tcgetattr],[AC_DEFINE([HAVE_TCGETATTR], [1], [Define to 1 if you have the tcgetattr function.])])
   AC_CHECK_LIB([c], [tcsetattr],[AC_DEFINE([HAVE_TCSETATTR], [1], [Define to 1 if you have the tcsetattr function.])])
