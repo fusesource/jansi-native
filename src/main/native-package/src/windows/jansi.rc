@@ -48,10 +48,10 @@
 #endif
 
 #ifndef STR_VERSION
-#define STR_VERSION         "1.5.0"
+#define STR_VERSION         "1.7.0"
 #endif
 #ifndef CSV_VERSION
-#define CSV_VERSION         1,5,0
+#define CSV_VERSION         1,7,0
 #endif
 
 #define PRIVATE_BUILD       0
