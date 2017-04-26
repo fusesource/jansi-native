@@ -63,7 +63,7 @@ public class CLibrary {
     public static native String ttyname(
             @JniArg int filedes);
 
-    @JniMethod(conditional="defined(HAVE_OPENPTY)")
+    @JniMethod(conditional="defined(HAVE_OPENPTY) && defined(HAVE_IOCTL_H)")
     public static native int openpty(
             @JniArg(cast="int *", flags={NO_IN}) int[] amaster,
             @JniArg(cast="int *", flags={NO_IN}) int[] aslave,
@@ -71,12 +71,12 @@ public class CLibrary {
             @JniArg(cast="struct termios *", flags={NO_OUT}) Termios termios,
             @JniArg(cast="struct winsize *", flags={NO_OUT}) WinSize winsize);
 
-    @JniMethod(conditional="defined(HAVE_TCGETATTR)")
+    @JniMethod(conditional="defined(HAVE_TCGETATTR) && defined(HAVE_IOCTL_H)")
     public static native int tcgetattr(
             @JniArg int filedes,
             @JniArg(cast="struct termios *", flags={NO_IN}) Termios termios);
 
-    @JniMethod(conditional="defined(HAVE_TCSETATTR)")
+    @JniMethod(conditional="defined(HAVE_TCSETATTR) && defined(HAVE_IOCTL_H)")
     public static native int tcsetattr(
             @JniArg int filedes,
             @JniArg int optional_actions,
@@ -111,13 +111,13 @@ public class CLibrary {
             @JniArg long request,
             @JniArg int[] params);
 
-    @JniMethod(conditional="defined(HAVE_IOCTL) && defined(HAVE_OPENPTY)")
+    @JniMethod(conditional="defined(HAVE_IOCTL) && defined(HAVE_IOCTL_H)")
     public static native int ioctl(
             @JniArg int filedes,
             @JniArg long request,
             @JniArg(flags = ArgFlag.POINTER_ARG) WinSize params);
 
-    @JniClass(flags={ClassFlag.STRUCT}, name="winsize", conditional="defined(HAVE_OPENPTY)")
+    @JniClass(flags={ClassFlag.STRUCT}, name="winsize", conditional="defined(HAVE_IOCTL_H)")
     public static class WinSize {
 
         static {
@@ -148,7 +148,7 @@ public class CLibrary {
         }
     }
 
-    @JniClass(flags={ClassFlag.STRUCT}, name="termios", conditional="defined(HAVE_OPENPTY)")
+    @JniClass(flags={ClassFlag.STRUCT}, name="termios", conditional = "defined(HAVE_IOCTL_H)")
     public static class Termios {
 
         static {

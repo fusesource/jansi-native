@@ -69,5 +69,13 @@
   #include <termios.h>
 #endif
 
+#ifdef HAVE_IOCTL_H
+  #include <sys/ioctl.h>
+#endif
+
+#ifdef HAVE_PTY_H
+  #include <pty.h>
+#endif
+
 
 #endif /* JANSI_H */
