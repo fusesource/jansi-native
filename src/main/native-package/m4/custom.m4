@@ -27,4 +27,18 @@ AC_DEFUN([CUSTOM_M4_SETUP],
   AC_CHECK_HEADER([termios.h], [AC_DEFINE([HAVE_TERMIOS_H], 1, [Header termios.h])])
   AC_CHECK_HEADER([libutil.h], [AC_DEFINE([HAVE_JANSI_LIBUTIL_H], [1], [Header libutil.h])])
   AC_CHECK_HEADER([util.h], [AC_DEFINE([HAVE_JANSI_UTIL_H], [1], [Header util.h])])
+
+  ssp_cc=yes
+  if test "X$CC" != "X"; then
+    AC_MSG_CHECKING([whether ${CC} accepts -fstack-protector])
+    ssp_old_cflags="$CFLAGS"
+    CFLAGS="$CFLAGS -fstack-protector"
+    AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])], [], [], [ssp_cc=no])
+    AC_MSG_RESULT([$ssp_cc])
+    if test "X$ssp_cc" = "Xno"; then
+      CFLAGS="$ssp_old_cflags"
+    else
+      AC_DEFINE([ENABLE_SSP_CC], 1, [Define if SSP C support is enabled.])
+    fi
+  fi
 ])
