@@ -22,6 +22,10 @@
   <PropertyGroup Label="Globals">
     <ProjectName>jansi</ProjectName>
     <RootNamespace>jansi</RootNamespace>
+    <OutDir>$(ProjectDir)\target\$(Platform)-$(Configuration)\lib\</OutDir>
+    <IntDir>$(ProjectDir)\target\$(Platform)-$(Configuration)\obj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
@@ -100,7 +104,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;msvcrt.lib;bufferoverflowU.lib;libcmt.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -130,7 +134,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>kernel32.lib;msvcrt.lib;RunTmChk.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;msvcrt.lib;bufferoverflowU.lib;libcmt.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
