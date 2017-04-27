@@ -170,7 +170,7 @@ public class CLibrary {
         @JniField(accessor="c_lflag")
         public long c_lflag;
         @JniField(accessor="c_cc")
-        public byte[] c_cc = new byte[20];
+        public byte[] c_cc = new byte[32];
         @JniField(accessor="c_ispeed")
         public long c_ispeed;
         @JniField(accessor="c_ospeed")
