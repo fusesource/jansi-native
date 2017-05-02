@@ -1,6 +1,5 @@
 dnl ---------------------------------------------------------------------------
-dnl  Copyright (C) 2009 Progress Software, Inc.
-dnl  http://fusesource.com
+dnl  Copyright (C) 2009-2017 the original author(s).
 dnl  
 dnl  Licensed under the Apache License, Version 2.0 (the "License");
 dnl  you may not use this file except in compliance with the License.
