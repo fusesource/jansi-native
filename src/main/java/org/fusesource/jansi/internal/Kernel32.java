@@ -225,7 +225,15 @@ public class Kernel32 {
         public short height() {
             return (short) (bottom-top);
         }
-    }    
+        public SMALL_RECT copy() {
+            SMALL_RECT rc = new SMALL_RECT();
+            rc.left = left;
+            rc.top = top;
+            rc.right = right;
+            rc.bottom = bottom;
+            return rc;
+        }
+    }
 
     /**
      * see http://msdn.microsoft.com/en-us/library/ms686047%28VS.85%29.aspx
