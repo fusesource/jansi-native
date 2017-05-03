@@ -4,6 +4,7 @@
 
 ## [Jansi Native 1.7][1_7], released 2017-05-xx
 
+a8cc48a Add a copy() method on SMALL_RECT for ease of use
 e2f6efb Fix copyrights
 36a03b7 Fix build when openpty is in libutilext development iteration
 915a7c6 Fix wrong conditions and constants
