@@ -28,38 +28,23 @@
   <version>1.8-SNAPSHOT</version>
   
   <name>${project.artifactId}</name>
-  <description>Jansi is a java library for generating and interpreting ANSI escape sequences.</description>
+  <description>Jansi Native implements the JNI Libraries used by the Jansi project.</description>
   
   <properties>
-    <forge-project-id>jansi</forge-project-id>
-    <forge-project-id-uc>JANSI</forge-project-id-uc>
+    <forge-project-id>jansi-native</forge-project-id>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <release-altGitURL>scm:git:ssh://git@forge.fusesource.com/jansinative.git</release-altGitURL>
     <hawtjni-version>1.15</hawtjni-version>
     <platform>native</platform>    
   </properties>
   
-  <url>http://${forge-project-id}.fusesource.org</url>
+  <url>http://fusesource.github.io/${forge-project-id}</url>
   <inceptionYear>2009</inceptionYear>
 
   <issueManagement>
-    <system>jira</system>
-    <url>http://fusesource.com/issues/browse/${forge-project-id-uc}</url>
+    <system>GitHub</system>
+    <url>https://github.com/fusesource/${forge-project-id}/issues</url>
   </issueManagement>
-  
-  <mailingLists>
-    <mailingList>
-      <name>${forge-project-id} dev</name>
-      <post>${forge-project-id}-dev@fusesource.org</post>
-      <subscribe>${forge-project-id}-dev-subscribe@fusesource.org</subscribe>
-    </mailingList>
-    <mailingList>
-      <name>${forge-project-id} commits</name>
-      <post>${forge-project-id}-commits@fusesource.org</post>
-      <subscribe>${forge-project-id}-commits-subscribe@fusesource.org</subscribe>
-    </mailingList>
-  </mailingLists>
 
   <licenses>
     <license>
@@ -70,11 +55,10 @@
   </licenses>
   
   <scm>
-    <connection>scm:git:git://forge.fusesource.com/jansinative.git</connection>
-    <!-- Work around for issue: http://jira.codehaus.org/browse/SCM-444 -->
-    <developerConnection>${release-altGitURL}</developerConnection>
-    <url>http://fusesource.com/forge/gitweb?p=jansinative.git</url>
-    <tag>HEAD</tag>
+    <connection>scm:git:https://github.com/fusesource/${forge-project-id}.git</connection>
+    <developerConnection>scm:git:https://github.com/fusesource/${forge-project-id}.git</developerConnection>
+    <url>https://github.com/fusesource/${forge-project-id}/tree/${project.scm.tag}</url>
+    <tag>master</tag>
   </scm>
 
   <distributionManagement>
@@ -212,19 +196,15 @@
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jxr-maven-plugin</artifactId>
-        <version>2.0-beta-1</version>
-        <configuration>
-          <aggregate>true</aggregate>
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.5</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.10.4</version>
         <configuration>
-          <excludePackageNames>*.internal</excludePackageNames>
           <linksource>true</linksource>
           <links>
             <link>http://java.sun.com/j2se/1.5.0/docs/api</link>
@@ -234,12 +214,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.1.1</version>
+        <version>2.9</version>
         <reportSets>
           <reportSet>
             <reports>
               <report>index</report>
-              <report>sumary</report>
+              <report>summary</report>
               <report>plugins</report>
               <report>dependencies</report>
               <report>mailing-list</report>
@@ -249,16 +229,6 @@
             </reports>
           </reportSet>
         </reportSets>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>surefire-report-maven-plugin</artifactId>
-        <version>2.0-beta-1</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <version>2.5</version>
       </plugin>
     </plugins>
   </reporting>
