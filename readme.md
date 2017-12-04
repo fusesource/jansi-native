@@ -25,17 +25,12 @@ Project Links
 
 * [Project Home](http://fusesource.github.io/jansi/)
 
-Building on Windows
--------------------
+Building
+--------
 
-Download and install the free [Microsoft Windows SDK][SDK].  The SDK includes
-all the headers, libraries, and build tools needed to compile the JNI library.
+To build, just run `mvn -Dplatform=${platform} package` where `${platform}` may be `windows32`, `windows64`,
+`osx`, `linux32`, `linux64`, `freebsd32`, `freebsd64` or any other platform of your choice.
 
-Set the `JAVA_HOME` environment variable to the location where your JDK is 
-installed.  
-
-Use the "Start>All Programs>Microsoft Windows SDK vX.X>CMD" command window 
-and change to the directory that this file is located in and then run the
-maven build.
-
-[SDK]: http://www.microsoft.com/downloads/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505
+Jansi native uses [HawtJNI](http://fusesource.github.io/hawtjni/) to ease JNI management.
+See [Platform Build Tools Requirements](http://fusesource.github.io/hawtjni/documentation/developer-guide.html#Platform_Build_Tools_Requirements)
+for details on platform requirements.
