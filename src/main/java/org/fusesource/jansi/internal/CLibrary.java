@@ -54,6 +54,17 @@ public class CLibrary {
 
     @JniField(flags={CONSTANT}, accessor="1", conditional="defined(HAVE_ISATTY)")
     public static boolean HAVE_ISATTY;
+
+    /**
+     * test whether a file descriptor refers to a terminal
+     * 
+     * @param fd file descriptor
+     * @return isatty() returns 1 if fd is an open file descriptor referring to a
+     * terminal; otherwise 0 is returned, and errno is set to indicate the
+     * error
+     * @see <a href="http://man7.org/linux/man-pages/man3/isatty.3.html">ISATTY(3) man-page</a>
+     * @see <a href="http://man7.org/linux/man-pages/man3/isatty.3p.html">ISATTY(3P) man-page</a>
+     */
     @JniMethod(conditional="defined(HAVE_ISATTY)")
     public static native int isatty(
             @JniArg int fd);
@@ -62,6 +73,17 @@ public class CLibrary {
     public static native String ttyname(
             @JniArg int filedes);
 
+    /**
+     * The openpty() function finds an available pseudoterminal and returns
+     * file descriptors for the master and slave in amaster and aslave.
+     * @param amaster master return value
+     * @param aslave slave return value
+     * @param name filename return value
+     * @param termios
+     * @param winsize
+     * @return 0 on success
+     * @see <a href="http://man7.org/linux/man-pages/man3/openpty.3.html">OPENPTY(3) man-page</a>
+     */
     @JniMethod(conditional="defined(HAVE_OPENPTY)")
     public static native int openpty(
             @JniArg(cast="int *", flags={NO_IN}) int[] amaster,
@@ -99,11 +121,26 @@ public class CLibrary {
     public static long TIOCGETD;
     @JniField(flags={CONSTANT}, conditional="defined(TIOCSETD)")
     public static long TIOCSETD;
+    /**
+     * ioctl command: Get window size.
+     */
     @JniField(flags={CONSTANT}, conditional="defined(TIOCGWINSZ)")
     public static long TIOCGWINSZ;
+    /**
+     * ioctl command: Set window size.
+     */
     @JniField(flags={CONSTANT}, conditional="defined(TIOCSWINSZ)")
     public static long TIOCSWINSZ;
 
+    /**
+     * Control a STREAMS device.
+     *
+     * @param filedes
+     * @param request
+     * @param params
+     * @return
+     * @see <a href="http://man7.org/linux/man-pages/man3/ioctl.3p.html">IOCTL(3P) man-page</a>
+     */
     @JniMethod(conditional="defined(HAVE_IOCTL)")
     public static native int ioctl(
             @JniArg int filedes,
@@ -116,6 +153,10 @@ public class CLibrary {
             @JniArg long request,
             @JniArg(flags = ArgFlag.POINTER_ARG) WinSize params);
 
+    /**
+     * Window sizes.
+     * @see <a href="http://man7.org/linux/man-pages/man4/tty_ioctl.4.html">IOCTL_TTY(2) man-page</a>
+     */
     @JniClass(flags={ClassFlag.STRUCT}, name="winsize", conditional="defined(HAVE_IOCTL)")
     public static class WinSize {
 
@@ -147,6 +188,12 @@ public class CLibrary {
         }
     }
 
+    /**
+     * termios structure for termios functions, describing a general terminal interface that is
+     * provided to control asynchronous communications ports
+     *
+     * @see <a href="http://man7.org/linux/man-pages/man3/termios.3.html">TERMIOS(3) man-page</a>
+     */
     @JniClass(flags={ClassFlag.STRUCT}, name="termios", conditional = "defined(HAVE_IOCTL)")
     public static class Termios {
 

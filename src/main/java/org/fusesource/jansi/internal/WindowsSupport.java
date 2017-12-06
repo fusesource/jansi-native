@@ -22,7 +22,8 @@ import org.fusesource.jansi.internal.Kernel32.CONSOLE_SCREEN_BUFFER_INFO;
 import java.io.IOException;
 
 /**
- * 
+ * Windows helper to ease Kernel32 usage.
+ *
  * @author <a href="http://hiramchirino.com">Hiram Chirino</a>
  */
 public class WindowsSupport {
