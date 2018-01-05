@@ -307,8 +307,14 @@ public class Kernel32 {
             return window.height() + 1;
         }
     }
-    
-    
+
+
+    // DWORD WINAPI WaitForSingleObject(
+    //  _In_ HANDLE hHandle,
+    //  _In_ DWORD  dwMilliseconds
+    // );
+    public static final native int WaitForSingleObject(@JniArg(cast="HANDLE")long hHandle, int dwMilliseconds);
+
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms724211%28VS.85%29.aspx
      * 
