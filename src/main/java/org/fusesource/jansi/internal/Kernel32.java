@@ -575,7 +575,6 @@ public class Kernel32 {
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms684239(v=VS.85).aspx
      */
-    /*
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
     public static class MOUSE_EVENT_RECORD {
 
@@ -645,12 +644,10 @@ public class Kernel32 {
                     '}';
         }
     }
-    */
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms687093(v=VS.85).aspx
      */
-    /*
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
     public static class WINDOW_BUFFER_SIZE_RECORD {
 
@@ -671,12 +668,10 @@ public class Kernel32 {
             return "WINDOW_BUFFER_SIZE_RECORD{size=" + size + '}';
         }
     }
-    */
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683149(v=VS.85).aspx
      */
-    /*
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
     public static class FOCUS_EVENT_RECORD {
         static {
@@ -690,12 +685,10 @@ public class Kernel32 {
         @JniField(accessor="bSetFocus")
         public boolean setFocus;
     }
-    */
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms684213(v=VS.85).aspx
      */
-    /*
     @JniClass(flags={ClassFlag.STRUCT,TYPEDEF}, conditional="defined(_WIN32) || defined(_WIN64)")
     public static class MENU_EVENT_RECORD {
         static {
@@ -709,7 +702,6 @@ public class Kernel32 {
         @JniField(accessor="dwCommandId")
         public int commandId;
     }
-    */
 
     /**
      * see: http://msdn.microsoft.com/en-us/library/ms683499(v=VS.85).aspx
@@ -728,7 +720,6 @@ public class Kernel32 {
         public static int SIZEOF;
         @JniField(flags={CONSTANT}, accessor="KEY_EVENT")
         public static short KEY_EVENT;
-        /*
         @JniField(flags={CONSTANT}, accessor="MOUSE_EVENT")
         public static short MOUSE_EVENT;
         @JniField(flags={CONSTANT}, accessor="WINDOW_BUFFER_SIZE_EVENT")
@@ -737,12 +728,10 @@ public class Kernel32 {
         public static short FOCUS_EVENT;
         @JniField(flags={CONSTANT}, accessor="MENU_EVENT")
         public static short MENU_EVENT;
-        */
         @JniField(accessor="EventType")
         public short eventType;
         @JniField(accessor="Event.KeyEvent")
         public KEY_EVENT_RECORD keyEvent = new KEY_EVENT_RECORD();
-        /*
         @JniField(accessor="Event.MouseEvent")
         public MOUSE_EVENT_RECORD mouseEvent = new MOUSE_EVENT_RECORD();
         @JniField(accessor="Event.WindowBufferSizeEvent")
@@ -751,7 +740,7 @@ public class Kernel32 {
         public MENU_EVENT_RECORD menuEvent = new MENU_EVENT_RECORD();
         @JniField(accessor="Event.FocusEvent")
         public FOCUS_EVENT_RECORD focusEvent = new FOCUS_EVENT_RECORD();
-        */
+
         public static final native void memmove (
           @JniArg(cast="void *", flags={NO_IN, CRITICAL}) INPUT_RECORD dest,
           @JniArg(cast="const void *", flags={NO_OUT, CRITICAL}) long src,

@@ -96,14 +96,14 @@ public class WindowsSupport {
             return null;
         if (WaitForSingleObject(hConsole, dwMilliseconds) != 0)
             return null;
-        return readConsoleKeyInput(hConsole, count, false);
+        return readConsoleInputHelper(hConsole, count, false);
     }
 
     public static INPUT_RECORD[] readConsoleInput(int count) throws IOException {
         long hConsole = GetStdHandle (STD_INPUT_HANDLE);
         if (hConsole == INVALID_HANDLE_VALUE)
             return null;
-        return readConsoleKeyInput(hConsole, count, false);
+        return readConsoleInputHelper(hConsole, count, false);
     }
 
     public static INPUT_RECORD[] peekConsoleInput(int count, int dwMilliseconds) throws IOException {
@@ -112,14 +112,14 @@ public class WindowsSupport {
             return null;
         if (WaitForSingleObject(hConsole, dwMilliseconds) != 0)
             return null;
-        return readConsoleKeyInput(hConsole, count, true);
+        return readConsoleInputHelper(hConsole, count, true);
     }
 
     public static INPUT_RECORD[] peekConsoleInput(int count) throws IOException {
         long hConsole = GetStdHandle (STD_INPUT_HANDLE);
         if (hConsole == INVALID_HANDLE_VALUE)
             return null;
-        return readConsoleKeyInput(hConsole, count, true);
+        return readConsoleInputHelper(hConsole, count, true);
     }
 
     public static void flushConsoleInputBuffer() {
