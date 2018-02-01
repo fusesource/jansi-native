@@ -55,6 +55,9 @@ public class CLibrary {
     @JniField(flags={CONSTANT}, accessor="1", conditional="defined(HAVE_ISATTY)")
     public static boolean HAVE_ISATTY;
 
+    @JniField(flags={CONSTANT}, accessor="1", conditional="defined(HAVE_TTYNAME)")
+    public static boolean HAVE_TTYNAME;
+
     /**
      * test whether a file descriptor refers to a terminal
      * 
@@ -65,7 +68,7 @@ public class CLibrary {
      * @see <a href="http://man7.org/linux/man-pages/man3/isatty.3.html">ISATTY(3) man-page</a>
      * @see <a href="http://man7.org/linux/man-pages/man3/isatty.3p.html">ISATTY(3P) man-page</a>
      */
-    @JniMethod(conditional="defined(HAVE_ISATTY)")
+    @JniMethod(conditional="FALSE")
     public static native int isatty(
             @JniArg int fd);
 

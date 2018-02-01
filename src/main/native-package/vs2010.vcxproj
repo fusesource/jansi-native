@@ -190,6 +190,8 @@
   <ItemGroup>
     <ClCompile Include=".\src\hawtjni.c" />
     <ClCompile Include=".\src\jansi.c" />
+    <ClCompile Include=".\src\jansi_isatty.c" />
+    <ClCompile Include=".\src\jansi_ttyname.c" />
     <ClCompile Include=".\src\jansi_stats.c" />
     <ClCompile Include=".\src\jansi_structs.c" />
     <ClCompile Include=".\src\windows\crtdll.c" />

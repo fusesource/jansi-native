@@ -322,7 +322,9 @@ PDBFLAGS = -Fo$(WORKDIR)\ -Fd$(WORKDIR)\$(PROJECT)-src
 OBJECTS = \
 	$(WORKDIR)\hawtjni.obj \
 	$(WORKDIR)\jansi.obj \
-	$(WORKDIR)\jansi_stats.obj \
+	$(WORKDIR)\jansi_isatty.obj \
+    $(WORKDIR)\jansi_ttyname.obj \
+    $(WORKDIR)\jansi_stats.obj \
 	$(WORKDIR)\jansi_structs.obj
 
 BUILDDLL = $(WORKDIR)\$(PROJECT).dll
