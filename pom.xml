@@ -34,7 +34,7 @@
     <forge-project-id>jansi-native</forge-project-id>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <hawtjni-version>1.16-SNAPSHOT</hawtjni-version>
+    <hawtjni-version>1.16</hawtjni-version>
     <platform>native</platform>    
   </properties>
   
