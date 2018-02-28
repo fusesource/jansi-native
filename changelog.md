@@ -2,6 +2,23 @@
 ===========
 [logo]: http://fusesource.github.io/jansi/images/project-logo.png "Jansi"
 
+## [Jansi Native 1.8][1_8], released 2018-02-02
+[1_8]: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi-native/1.8
+
+* [`e0bd25d`](https://github.com/fusesource/hawtjni/commit/e0bd25db8c7bd2b59332a06fb8deb0fd92d60fc0) Upgrade to hawtjni 1.16
+* [`52d4840`](https://github.com/fusesource/hawtjni/commit/52d4840b2e7a65ef973c4542cedb42d118dba983) Improve isatty() Windows implementation with Cygwin/Mingw pseudo terminals, fixes [#11](https://github.com/fusesource/jansi-native/issues/11)
+* [`6728bc6`](https://github.com/fusesource/hawtjni/commit/6728bc6b8e472cc3b50a007f61203764a9c2429f) Fix indentation
+* [`e266e32`](https://github.com/fusesource/hawtjni/commit/e266e327fb4d7aa8230c18d96f7233591ee7ae30) Add support for other console events
+* [`f2686cf`](https://github.com/fusesource/hawtjni/commit/f2686cf240fafec88d454ddda118ef27c301ec47) Add a way to read console input with a timeout
+* [`e1a6d4f`](https://github.com/fusesource/hawtjni/commit/e1a6d4f3909a0f6e39e5792968597f6a0c1fd777) Update hawtjni maven plugin artifactId
+* [`844f627`](https://github.com/fusesource/hawtjni/commit/844f627a692ee44a20ac887d32cd33f7cf5304f9) improved javadoc
+* [`5560ba7`](https://github.com/fusesource/hawtjni/commit/5560ba70e9de14ecb6071c7de9d8f146400c975d) use latest hawtjni-runtime to get documented annotations in javadoc
+* [`da27164`](https://github.com/fusesource/hawtjni/commit/da27164da4a4a16d66947068643df342f120897c) reworked building section
+* [`9461d6b`](https://github.com/fusesource/hawtjni/commit/9461d6b6ddc090f652823b5bc7ecd5bbcc015032) improved intro
+* [`ddcc121`](https://github.com/fusesource/hawtjni/commit/ddcc121d8012f1a702d3eff86fc1afb38fea269a) fixed m-javadoc-p configuration
+* [`0c0dccf`](https://github.com/fusesource/hawtjni/commit/0c0dccff5e711a7adff10d0dd31b5e3a8568f543) added icons for artifacts in Maven Central
+* [`e77fbcf`](https://github.com/fusesource/hawtjni/commit/e77fbcfad9b4249d4f18c71c8af6c500d33837a7) updated pom to match migration to GitHub
+
 ## [Jansi Native 1.7][1_7], released 2017-05-04
 [1_7]: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi-native/1.7
 
