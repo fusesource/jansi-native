@@ -29,9 +29,12 @@ import org.fusesource.hawtjni.runtime.JniMethod;
 import org.fusesource.hawtjni.runtime.Library;
 
 /**
- * Interface to access some low level POSIX functions.
+ * Interface to access some low level POSIX functions, loaded by
+ * <a href="http://fusesource.github.io/hawtjni/">HawtJNI</a> Runtime
+ * as <code>jansi</code> library.
  * 
  * @author <a href="http://hiramchirino.com">Hiram Chirino</a>
+ * @see Library
  */
 @JniClass()
 public class CLibrary {

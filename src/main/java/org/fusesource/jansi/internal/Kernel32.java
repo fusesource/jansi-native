@@ -25,9 +25,12 @@ import static org.fusesource.hawtjni.runtime.FieldFlag.*;
 import static org.fusesource.hawtjni.runtime.MethodFlag.*;
 
 /**
- * Interface to access Win32 base APIs.
+ * Interface to access Win32 base APIs, loaded by
+ * <a href="http://fusesource.github.io/hawtjni/">HawtJNI</a> Runtime
+ * as <code>jansi</code> library.
  *
  * @author <a href="http://hiramchirino.com">Hiram Chirino</a>
+ * @see Library
  */
 @JniClass(conditional="defined(_WIN32) || defined(_WIN64)")
 public class Kernel32 {
