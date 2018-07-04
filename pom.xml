@@ -116,7 +116,18 @@
       </plugins>
     </pluginManagement>
     <plugins>
-    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>org.fusesource.jansi.${platform}</Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
       <!-- the older clean plugin has trouble deleting directories with symlinks in them -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
