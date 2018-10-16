@@ -34,6 +34,7 @@
     <forge-project-id>jansi-native</forge-project-id>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.5</maven.compiler.source>
     <hawtjni-version>1.16</hawtjni-version>
     <platform>native</platform>    
   </properties>
@@ -161,8 +162,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.6.1</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.source}</target>
         </configuration>
       </plugin>
       
@@ -346,6 +347,14 @@
       </build>
     </profile>
     
-    
+    <profile>
+      <id>java-9</id>
+      <activation>
+        <jdk>[1.9,)</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+      </properties>
+    </profile>
   </profiles>
 </project>
