@@ -28,8 +28,9 @@ Project Links
 Building
 --------
 
-To build, just run `mvn -Dplatform=${platform} package` where `${platform}` may be `windows32`, `windows64`,
-`osx`, `linux32`, `linux64`, `freebsd32`, `freebsd64` or any other platform of your choice.
+To build, just run `mvn -Dplatform=${platform} -Darch=${arch} package` where `${platform}` may be `windows32`, `windows64`,
+`osx`, `linux32`, `linux64`, `freebsd32`, `freebsd64` or any other platform of your choice,
+and `${arch}` is the Java `os.name` for the target architecture, such as `i386` or `amd64`.
 
 Jansi native uses [HawtJNI](http://fusesource.github.io/hawtjni/) to ease JNI management.
 See [Platform Build Tools Requirements](http://fusesource.github.io/hawtjni/documentation/developer-guide.html#Platform_Build_Tools_Requirements)
