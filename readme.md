@@ -24,6 +24,7 @@ Project Links
 -------------
 
 * [Project Home](http://fusesource.github.io/jansi/)
+* [Jansi-native API](http://fusesource.github.io/jansi/documentation/native-api/index.html)
 
 Building
 --------
