@@ -5,7 +5,9 @@ Description
 -----------
 
 Jansi Native implements the JNI libraries used by the 
-[Jansi project](http://fusesource.github.io/jansi/). 
+[Jansi project](http://fusesource.github.io/jansi/):
+- [Kernel32](http://fusesource.github.io/jansi/documentation/native-api/org/fusesource/jansi/internal/Kernel32.html) and [WindowsSupport](http://fusesource.github.io/jansi/documentation/native-api/org/fusesource/jansi/internal/WindowsSupport.html) for ANSI support on Windows
+- [CLibrary](http://fusesource.github.io/jansi/documentation/native-api/org/fusesource/jansi/internal/CLibrary.html) for POSIX tty functions on Unix and Windows
 
 [![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/fusesource/jansi-native.svg?label=License)](http://www.apache.org/licenses/)
 
