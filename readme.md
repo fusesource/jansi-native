@@ -1,3 +1,8 @@
+DEPRECATION
+===========
+
+The Jansi Native library is deprecated and is now embedded inside [Jansi 2.x](https://github.com/fusesource/jansi).
+
 Jansi Native
 ============
 
