@@ -24,7 +24,7 @@
   </parent>
 
   <groupId>org.fusesource.jansi</groupId>
-  <artifactId>jansi-${platform}</artifactId>
+  <artifactId>jansi-${platformId}</artifactId>
   <version>1.9-SNAPSHOT</version>
   
   <name>${project.artifactId}</name>
@@ -36,7 +36,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.5</maven.compiler.source>
     <hawtjni-version>1.16</hawtjni-version>
-    <platform>native</platform>    
+    <platformId>native</platformId>    
   </properties>
   
   <url>http://fusesource.github.io/${forge-project-id}</url>
@@ -123,7 +123,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Automatic-Module-Name>org.fusesource.jansi.${platform}</Automatic-Module-Name>
+              <Automatic-Module-Name>org.fusesource.jansi.${platformId}</Automatic-Module-Name>
             </manifestEntries>
           </archive>
         </configuration>
@@ -262,6 +262,9 @@
           <name>platform</name>
         </property>
       </activation>
+      <properties>
+        <platformId>${platform}-${arch}</platformId>
+      </properties>
       <build>
         <plugins>
           
@@ -278,7 +281,7 @@
                   <goal>package-source</goal>
                 </goals>
                 <configuration>
-                  <platform>${platform}</platform>
+                  <platform>${platform}/${arch}</platform>
                   <name>jansi</name>
                   <classified>false</classified>
                   <callbacks>false</callbacks>
